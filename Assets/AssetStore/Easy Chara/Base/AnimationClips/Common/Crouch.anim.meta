@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 65264b672aaa3f248b75e51a336569c9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 334306
+  packageName: "Easy Chara \u2013 Hisa Shark 2D Character Collection"
+  packageVersion: 1.0
+  assetPath: Assets/Easy Chara/Base/AnimationClips/Common/Crouch.anim
+  uploadId: 791538
