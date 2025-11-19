@@ -2,6 +2,8 @@
 
 public class PlayerController : MonoBehaviour
 {
+    //GPT
+
     public float walkSpeed = 5f;
     public float jumpForce = 10f;
 
