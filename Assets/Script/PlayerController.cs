@@ -2,8 +2,8 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public float walkSpeed = 5f;
-    public float jumpForce = 10f;
+    public float walkSpeed;
+    public float jumpForce;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -22,8 +22,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // เปลี่ยน velocity → linearVelocity
+
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
         }
 
         if (moveInput > 0 && !facingRight)
@@ -36,8 +37,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // เปลี่ยน velocity → linearVelocity
+
         rb.linearVelocity = new Vector2(moveInput * walkSpeed, rb.linearVelocity.y);
+
     }
 
     void UpdateAnimation()
