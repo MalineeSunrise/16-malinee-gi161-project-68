@@ -2,8 +2,6 @@
 
 public class PlayerController : MonoBehaviour
 {
-    //GPT
-
     public float walkSpeed = 5f;
     public float jumpForce = 10f;
 
@@ -20,35 +18,32 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
         moveInput = Input.GetAxisRaw("Horizontal");
 
-       
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            // เปลี่ยน velocity → linearVelocity
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
 
-        
         if (moveInput > 0 && !facingRight)
             Flip();
         else if (moveInput < 0 && facingRight)
             Flip();
 
-        
         UpdateAnimation();
     }
 
     void FixedUpdate()
     {
-        
-        rb.velocity = new Vector2(moveInput * walkSpeed, rb.velocity.y);
+        // เปลี่ยน velocity → linearVelocity
+        rb.linearVelocity = new Vector2(moveInput * walkSpeed, rb.linearVelocity.y);
     }
 
     void UpdateAnimation()
     {
         float speed = Mathf.Abs(moveInput);
-        anim.SetFloat("Speed", speed); 
+        anim.SetFloat("Speed", speed);
     }
 
     void Flip()
