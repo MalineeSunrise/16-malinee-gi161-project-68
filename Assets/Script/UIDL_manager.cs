@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class UIDL_manager : MonoBehaviour
 {
@@ -101,5 +102,10 @@ public class UIDL_manager : MonoBehaviour
         dialogueText.text = "";
         index = 0;
         dialoguePanel.SetActive(false);
+    }
+
+    internal bool IsDialogueFinished()
+    {
+        throw new NotImplementedException();
     }
 }
