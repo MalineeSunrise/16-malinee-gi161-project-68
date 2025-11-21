@@ -28,6 +28,7 @@ public class Player : Character, IShootable
     public void OnHitWith(Enemy enemy)
     {
         LoseSanity(enemy.SanityHit);
+        TakeDamage(enemy.DamageHit);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -37,7 +38,12 @@ public class Player : Character, IShootable
         {
             OnHitWith(enemy);
             Debug.Log($"{this.name} collider and lose Sanity {Sanity}");
+
+            Vector2 pushDirection = (transform.position - enemy.transform.position).normalized;
+
+            rb.AddForce(pushDirection * 30f, ForceMode2D.Impulse);
         }
+
     }
 
     public void FixedUpdate()

@@ -50,9 +50,10 @@ public class Whispy : Enemy
     {
         IntializeWhispy();
         SanityHit = 5;
+        DamageHit = 5;
 
 
-        velocity = new Vector2(-1.0f, 0.0f);
+        velocity = new Vector2(-4.0f, 0.0f);
     }
 
     void Update()
