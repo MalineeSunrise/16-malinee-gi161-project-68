@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class Gloob : Enemy
 {
+    public override void Behavior()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override bool Checksanity()
     {
         throw new System.NotImplementedException();

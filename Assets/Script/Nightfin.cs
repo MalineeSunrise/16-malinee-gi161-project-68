@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class Nightfin : Enemy
 {
+    public override void Behavior()
+    {
+        throw new System.NotImplementedException();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override bool Checksanity()
     {

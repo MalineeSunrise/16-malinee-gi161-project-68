@@ -5,9 +5,15 @@ public abstract class Character : MonoBehaviour
     public float CurrentHealth { get; private set;}
 
     [SerializeField] private float MaxHp = 100f;
-    public float Sanity { get; private set; }
-    public float maxSanity { get; private set; } = 100f;
 
+    private float sanity;
+    public float Sanity
+    {
+        get { return sanity; }
+        set { sanity = (value < 0) ? 0 : value; }
+    }
+
+    [SerializeField] public float maxSanity;
 
     private float hearlth;
     public float Health
@@ -23,9 +29,6 @@ public abstract class Character : MonoBehaviour
     {
         Health = startHealth;
         Sanity = sanity;
-
-        Debug.Log($"{this.name} is initialize Health Health : {this.Health} and {this.Sanity}");
-
 
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -50,9 +53,9 @@ public abstract class Character : MonoBehaviour
         Sanity -= sanity;
     }
 
-    public void LoseSanity(int sanity)
+    public void LoseSanity(int amount)
     {
-        Sanity -= sanity;
+        Sanity -= amount;
     }
 
     public bool IsDead()
@@ -68,6 +71,11 @@ public abstract class Character : MonoBehaviour
     public float CalculateHealth()
     {
         return Health / MaxHp;
+    }
+
+    public float CalculateSanity()
+    {
+        return Sanity /maxSanity;
     }
 
     public abstract bool Checksanity();

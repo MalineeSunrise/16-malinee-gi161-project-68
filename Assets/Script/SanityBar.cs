@@ -23,7 +23,7 @@ public class SanityBar : MonoBehaviour
     {
         if (_characterTarget != null && sliderSanity != null)
         {
-            float t = _characterTarget.CalculateHealth();
+            float t = _characterTarget.CalculateSanity();
 
 
             sliderSanity.value = t;
