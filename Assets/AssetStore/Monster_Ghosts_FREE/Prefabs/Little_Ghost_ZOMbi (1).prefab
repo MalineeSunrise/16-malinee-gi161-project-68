@@ -230,8 +230,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHp: 100
+  maxSanity: 0
   velocity: {x: 0, y: 0}
-  MovePoint: []
+  MovePoint:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &6423403879501658884
 GameObject:
   m_ObjectHideFlags: 0
