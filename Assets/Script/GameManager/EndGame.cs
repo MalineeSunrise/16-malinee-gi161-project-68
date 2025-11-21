@@ -3,7 +3,6 @@ using UnityEngine;
 public class EndGame : MonoBehaviour
 {
     private bool playerIsClose;
-    private bool gameClosed;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,8 +20,6 @@ public class EndGame : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E) && playerIsClose)
         {
-            gameClosed = true;
-
             Application.Quit();
 
 #if UNITY_EDITOR

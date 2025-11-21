@@ -1053,6 +1053,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hisa Shark
       objectReference: {fileID: 0}
+    - target: {fileID: 7904384680237227253, guid: d11e8da7510ecc14487825368207ab3e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
