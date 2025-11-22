@@ -14,6 +14,23 @@ public class Player : Character, IShootable
 
     public float WaitTime { get; set; }
 
+    [SerializeField] private int jissawChard = 0;
+    public int JissawChard { get { return jissawChard; } set { jissawChard = value; } }
+
+    public void AddChard(int value)
+    {
+        JissawChard += value;
+    }
+
+    public void Heal(int value)
+    {
+        Health += value;
+    }
+
+    public void addSanity(int value)
+    {
+        Sanity += value;
+    }
 
     public override bool Checksanity()
     {
@@ -41,8 +58,9 @@ public class Player : Character, IShootable
             Vector2 pushDirection = (transform.position - enemy.transform.position).normalized;
 
             rb.AddForce(pushDirection * 30f, ForceMode2D.Impulse);
-        }
 
+
+        }
     }
 
     public void FixedUpdate()
@@ -79,7 +97,7 @@ public class Player : Character, IShootable
         IntializePlayer();
 
         ReloadTime = 1.0f;
-        WaitTime = 0.0f;
+        WaitTime = 0.0f; 
     }
 
     // Update is called once per frame

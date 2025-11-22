@@ -3026,6 +3026,34 @@ PrefabInstance:
       value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4857717635501534292, guid: b100033bd257c8e479a5c0a5b148fa2c, type: 3}
+      propertyPath: dropChance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857717635501534292, guid: b100033bd257c8e479a5c0a5b148fa2c, type: 3}
+      propertyPath: itemPrefabs
+      value: 
+      objectReference: {fileID: 3236153148852111183, guid: 9769d97326351cf44a1005d8f594322f, type: 3}
+    - target: {fileID: 4857717635501534292, guid: b100033bd257c8e479a5c0a5b148fa2c, type: 3}
+      propertyPath: randomItem1
+      value: 
+      objectReference: {fileID: 4488282680619472820, guid: 66d275a26f06b87498ecd49ed7234b69, type: 3}
+    - target: {fileID: 4857717635501534292, guid: b100033bd257c8e479a5c0a5b148fa2c, type: 3}
+      propertyPath: randomItem2
+      value: 
+      objectReference: {fileID: 387876477732018199, guid: c6242f847ecc04e44b9e290db9ef9b1c, type: 3}
+    - target: {fileID: 4857717635501534292, guid: b100033bd257c8e479a5c0a5b148fa2c, type: 3}
+      propertyPath: randomItem1Chance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857717635501534292, guid: b100033bd257c8e479a5c0a5b148fa2c, type: 3}
+      propertyPath: randomItem2Chance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857717635501534292, guid: b100033bd257c8e479a5c0a5b148fa2c, type: 3}
+      propertyPath: guaranteedDropItem
+      value: 
+      objectReference: {fileID: 3236153148852111183, guid: 9769d97326351cf44a1005d8f594322f, type: 3}
+    - target: {fileID: 4857717635501534292, guid: b100033bd257c8e479a5c0a5b148fa2c, type: 3}
       propertyPath: MovePoint.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -3388,6 +3416,7 @@ MonoBehaviour:
   <ShootPoint>k__BackingField: {fileID: 637268580}
   <Bullet2>k__BackingField: {fileID: 5465977207706204651, guid: ea214fcd70719d9408d89f634baf792d, type: 3}
   <ShootPoint2>k__BackingField: {fileID: 637268580}
+  jissawChard: 0
 --- !u!4 &814588158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7904384680237227252, guid: d11e8da7510ecc14487825368207ab3e, type: 3}
@@ -3575,6 +3604,34 @@ PrefabInstance:
       propertyPath: maxSanity
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 7982569403475127063, guid: 68a45b7c7de96f84bb3192731ba3a68c, type: 3}
+      propertyPath: dropChance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982569403475127063, guid: 68a45b7c7de96f84bb3192731ba3a68c, type: 3}
+      propertyPath: itemPrefabs
+      value: 
+      objectReference: {fileID: 3236153148852111183, guid: 9769d97326351cf44a1005d8f594322f, type: 3}
+    - target: {fileID: 7982569403475127063, guid: 68a45b7c7de96f84bb3192731ba3a68c, type: 3}
+      propertyPath: randomItem1
+      value: 
+      objectReference: {fileID: 387876477732018199, guid: c6242f847ecc04e44b9e290db9ef9b1c, type: 3}
+    - target: {fileID: 7982569403475127063, guid: 68a45b7c7de96f84bb3192731ba3a68c, type: 3}
+      propertyPath: randomItem2
+      value: 
+      objectReference: {fileID: 4488282680619472820, guid: 66d275a26f06b87498ecd49ed7234b69, type: 3}
+    - target: {fileID: 7982569403475127063, guid: 68a45b7c7de96f84bb3192731ba3a68c, type: 3}
+      propertyPath: randomItem1Chance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982569403475127063, guid: 68a45b7c7de96f84bb3192731ba3a68c, type: 3}
+      propertyPath: randomItem2Chance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982569403475127063, guid: 68a45b7c7de96f84bb3192731ba3a68c, type: 3}
+      propertyPath: guaranteedDropItem
+      value: 
+      objectReference: {fileID: 3236153148852111183, guid: 9769d97326351cf44a1005d8f594322f, type: 3}
     - target: {fileID: 7982569403475127063, guid: 68a45b7c7de96f84bb3192731ba3a68c, type: 3}
       propertyPath: MovePoint.Array.size
       value: 2
@@ -4358,6 +4415,34 @@ PrefabInstance:
       propertyPath: maxSanity
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: -4013546621927478375, guid: 0e984e923d84c6644a3633bbbc1127b9, type: 3}
+      propertyPath: dropChance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -4013546621927478375, guid: 0e984e923d84c6644a3633bbbc1127b9, type: 3}
+      propertyPath: itemPrefabs
+      value: 
+      objectReference: {fileID: 3236153148852111183, guid: 9769d97326351cf44a1005d8f594322f, type: 3}
+    - target: {fileID: -4013546621927478375, guid: 0e984e923d84c6644a3633bbbc1127b9, type: 3}
+      propertyPath: randomItem1
+      value: 
+      objectReference: {fileID: 387876477732018199, guid: c6242f847ecc04e44b9e290db9ef9b1c, type: 3}
+    - target: {fileID: -4013546621927478375, guid: 0e984e923d84c6644a3633bbbc1127b9, type: 3}
+      propertyPath: randomItem2
+      value: 
+      objectReference: {fileID: 4488282680619472820, guid: 66d275a26f06b87498ecd49ed7234b69, type: 3}
+    - target: {fileID: -4013546621927478375, guid: 0e984e923d84c6644a3633bbbc1127b9, type: 3}
+      propertyPath: randomItem1Chance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -4013546621927478375, guid: 0e984e923d84c6644a3633bbbc1127b9, type: 3}
+      propertyPath: randomItem2Chance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -4013546621927478375, guid: 0e984e923d84c6644a3633bbbc1127b9, type: 3}
+      propertyPath: guaranteedDropItem
+      value: 
+      objectReference: {fileID: 3236153148852111183, guid: 9769d97326351cf44a1005d8f594322f, type: 3}
     - target: {fileID: -4013546621927478375, guid: 0e984e923d84c6644a3633bbbc1127b9, type: 3}
       propertyPath: MovePoint.Array.size
       value: 2
