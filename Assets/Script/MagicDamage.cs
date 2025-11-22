@@ -16,6 +16,7 @@ public class MagicDamage : Weapon
     {
         if (character is Enemy)
             character.TakeDamage(this.damage);
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,7 +29,7 @@ public class MagicDamage : Weapon
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void FixedUpdate()

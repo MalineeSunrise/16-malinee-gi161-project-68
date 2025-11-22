@@ -36,7 +36,7 @@ public abstract class Weapon : MonoBehaviour
         if (character != null)
         {
             OnHitWith(other.GetComponent<Character>());
-            Destroy(this.gameObject, 5f);
+            Destroy(this.gameObject, 4f);
         }
     }
 

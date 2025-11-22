@@ -16,6 +16,7 @@ public class LightMagic : Weapon
     {
         if (character is Enemy)
             character.LoseSanity(this.sanity);
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

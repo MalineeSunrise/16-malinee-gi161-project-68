@@ -37,7 +37,6 @@ public class Player : Character, IShootable
         if (enemy != null)
         {
             OnHitWith(enemy);
-            Debug.Log($"{this.name} collider and lose Sanity {Sanity}");
 
             Vector2 pushDirection = (transform.position - enemy.transform.position).normalized;
 
