@@ -88,7 +88,7 @@ public class Player : Character, IShootable
             OnHitWith(enemy);
 
             Vector2 pushDirection = (transform.position - enemy.transform.position).normalized;
-            rb.AddForce(pushDirection * 30f, ForceMode2D.Impulse);
+            rb.AddForce(pushDirection * 20f, ForceMode2D.Impulse);
         }
     }
 

@@ -98,7 +98,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602553771946555303}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d27cfabcb9360f84fb029e648a54a89e, type: 2}
   m_CullingMode: 0
@@ -221,3 +221,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f50fe8bfbe49e4b88846622b056b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHp: 80
+  maxSanity: 80
+  guaranteedLoot:
+  - {fileID: 3236153148852111183, guid: 9769d97326351cf44a1005d8f594322f, type: 3}
+  lootTable:
+  - itemPrefabs: {fileID: 387876477732018199, guid: c6242f847ecc04e44b9e290db9ef9b1c, type: 3}
+    dropChance: 30
+  - itemPrefabs: {fileID: 4488282680619472820, guid: 66d275a26f06b87498ecd49ed7234b69, type: 3}
+    dropChance: 50
