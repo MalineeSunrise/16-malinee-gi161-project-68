@@ -57,7 +57,7 @@ public abstract class Character : MonoBehaviour
         Sanity -= amount;
     }
 
-    public bool IsDead()
+    public virtual bool IsDead()
     {
         if (Health <= 0)
         {

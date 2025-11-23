@@ -5,11 +5,8 @@ using System.Collections;
 public class Transition : MonoBehaviour
 {
     [Header("Transition Objects")]
-
     [SerializeField] private GameObject transitionUIGO;
-
     [SerializeField] private Animator cloudAnimator;
-
     [SerializeField] private AnimationClip fadeOutClip;
 
     [Header("Scene Settings")]
@@ -29,6 +26,12 @@ public class Transition : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
         {
+            // เปิดใช้งาน Player กลับมา (ถ้ามันถูกปิดอยู่จากการตาย)
+            if (Player.Instance != null)
+            {
+                Player.Instance.enabled = true;
+            }
+
             if (cloudAnimator != null && fadeOutClip != null)
             {
                 StartCoroutine(PlayFadeAndLoad());
@@ -59,7 +62,12 @@ public class Transition : MonoBehaviour
 
         yield return new WaitForSeconds(1.4f);
 
+        if (Player.Instance != null)
+        {
+            // เรียกเมธอดใหม่แบบไม่มีพารามิเตอร์
+            Player.Instance.PrepareForWarp();
+        }
+
         SceneManager.LoadScene(nextSceneName);
     }
 }
-

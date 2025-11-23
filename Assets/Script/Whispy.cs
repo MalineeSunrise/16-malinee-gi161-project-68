@@ -52,4 +52,12 @@ public class Whispy : Enemy
 
         velocity = new Vector2(-4.0f, 0.0f);
     }
+
+    void Update()
+    {
+        if (Player.Instance != null)
+        {
+            Behavior();
+        }
+    }
 }

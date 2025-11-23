@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,9 +19,15 @@ public class Player : Character, IShootable
     private bool isLosingHealth = false;
     private float healthTimer = 0f;
 
+    private Vector2 warpTargetPosition;
+    private bool isWarping = false;
+
     public int JissawChard { get { return jissawChard; } set { jissawChard = value; } }
 
     public static Player Instance { get; private set; }
+
+    private DeadUI deadUIManager;
+
 
     public void AddChard(int value)
     {
@@ -57,9 +64,9 @@ public class Player : Character, IShootable
                 if (Health <= 0)
                 {
                     Health = 0;
+                    IsDead();
                 }
             }
-
             return true;
         }
         else
@@ -78,6 +85,7 @@ public class Player : Character, IShootable
     public void OnHitWith(Enemy enemy)
     {
         TakeDamage(enemy.DamageHit, enemy.SanityHit);
+        IsDead(); // เรียก IsDead() ทุกครั้งที่โดนโจมตี
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -121,41 +129,91 @@ public class Player : Character, IShootable
         }
     }
 
-    void Awake()
+    private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
         {
-            Destroy(this.gameObject);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            Destroy(gameObject);
         }
     }
 
     void OnDestroy()
     {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
         if (Instance == this)
         {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
+            Instance = null;
         }
+    }
+
+    public void PrepareForWarp()
+    {
+        isWarping = true;
+        this.enabled = false;
+    }
+
+    private IEnumerator SetPositionNextFrame(Vector3 targetPosition)
+    {
+        yield return null;
+
+        this.transform.position = targetPosition;
+
+        Debug.Log("Warp Finalized to: " + targetPosition);
+        isWarping = false;
+
+        this.enabled = true;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        GameObject spawnPointGO = GameObject.FindWithTag("SpawnPoint");
+        Debug.Log("OnSceneLoaded called.");
 
-        if (spawnPointGO != null)
+        if (isWarping)
         {
-            this.transform.position = spawnPointGO.transform.position;
+            GameObject spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
+
+            Debug.Log("Found SpawnPoint? = " + (spawnPoint != null));
+
+            if (spawnPoint != null)
+            {
+                Debug.Log("SpawnPoint position = " + spawnPoint.transform.position);
+                StartCoroutine(SetPositionNextFrame(spawnPoint.transform.position));
+            }
+            else
+            {
+                Debug.LogError("ERROR: NO SpawnPoint IN SCENE!");
+            }
         }
-        else
+    }
+
+    public override bool IsDead()
+    {
+        if (Health <= 0)
         {
-            Debug.LogWarning("SpawnPoint not found in scene: " + scene.name + ". Player will use the last position.");
+            Health = 0;
+
+            if (deadUIManager != null)
+            {
+                deadUIManager.ShowGameOver();
+                this.enabled = false;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                Destroy(Player.Instance.gameObject);
+                SceneManager.LoadScene("_MainMenu");
+            }
+
+            return true;
         }
+        return false;
     }
 
     void Start()
@@ -163,6 +221,12 @@ public class Player : Character, IShootable
         IntializePlayer();
         ReloadTime = 1.0f;
         WaitTime = 0.0f;
+
+        deadUIManager = FindObjectOfType<DeadUI>();
+        if (deadUIManager == null)
+        {
+            Debug.LogError("DeadUI Manager not found...");
+        }
     }
 
     void Update()

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -6,6 +7,11 @@ public class CameraFollow : MonoBehaviour
     public float yOffset = 1f;
 
     private Transform targetPlayerTransform;
+
+    internal void SetTarget(Transform transform)
+    {
+        throw new NotImplementedException();
+    }
 
     void Awake()
     {

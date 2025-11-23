@@ -70,6 +70,9 @@ public class Nightfin : Enemy, IShootable
     {
         WaitTime += Time.deltaTime;
 
-        Behavior();
+        if (Player.Instance != null && Player.Instance.enabled)
+        {
+            Behavior(); 
+        }
     }
 }
