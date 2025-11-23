@@ -88,7 +88,7 @@ public class Player : Character, IShootable
             OnHitWith(enemy);
 
             Vector2 pushDirection = (transform.position - enemy.transform.position).normalized;
-            rb.AddForce(pushDirection * 20f, ForceMode2D.Impulse);
+            rb.AddForce(pushDirection * 10f, ForceMode2D.Impulse);
         }
     }
 
@@ -168,10 +168,5 @@ public class Player : Character, IShootable
     void Update()
     {
         Shoot();
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            TakeDamage(50, 50);
-        }
     }
 }

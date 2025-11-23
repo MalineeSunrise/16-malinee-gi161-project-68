@@ -14,8 +14,11 @@ public class LightMagic : Weapon
 
     public override void OnHitWith(Character character)
     {
-        if (character is Enemy)
+        if (character is Enemy) 
+        {
             character.LoseSanity(this.sanity);
+            Destroy(gameObject);
+        }
 
     }
 

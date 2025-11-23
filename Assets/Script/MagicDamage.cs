@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MagicDamage : Weapon
@@ -15,8 +16,10 @@ public class MagicDamage : Weapon
     public override void OnHitWith(Character character)
     {
         if (character is Enemy)
+        {
             character.TakeDamage(this.damage);
-
+            Destroy(gameObject);
+        }    
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

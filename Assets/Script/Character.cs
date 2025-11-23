@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
@@ -41,9 +41,6 @@ public abstract class Character : MonoBehaviour
 
         IsDead();
 
-        if (CurrentHealth < 0)
-            CurrentHealth = 0;
-
         CurrentHealth = Health;
     }
 
@@ -51,6 +48,8 @@ public abstract class Character : MonoBehaviour
     {
         Health -= damage;
         Sanity -= sanity;
+
+        IsDead();
     }
 
     public void LoseSanity(int amount)
