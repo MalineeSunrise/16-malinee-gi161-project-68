@@ -1,31 +1,44 @@
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
 public class SanityBar : MonoBehaviour
 {
     [SerializeField] private Slider sliderSanity;
+    private Character targetCharacter;
 
-    [SerializeField] private Character target;
-    [SerializeField] private Character _characterTarget;
-
-    void Start()
+    void Awake()
     {
-        if (target == null)
-        {
-            target = GetComponent<Character>();
+        FindTarget();
+    }
 
-            if (target == null)
-                target = GetComponentInParent<Character>();
+    private void FindTarget()
+    {
+        targetCharacter = GetComponentInParent<Character>();
+
+        if (targetCharacter == null && Player.Instance != null)
+        {
+            if (GetComponentInParent<Player>() == Player.Instance)
+            {
+                targetCharacter = Player.Instance;
+            }
+        }
+
+        if (targetCharacter == null)
+        {
+            
         }
     }
+
     void Update()
     {
-        if (_characterTarget != null && sliderSanity != null)
+        if (targetCharacter == null)
         {
-            float t = _characterTarget.CalculateSanity();
+            FindTarget();
+        }
 
-
+        if (targetCharacter != null && sliderSanity != null)
+        {
+            float t = targetCharacter.CalculateSanity();
             sliderSanity.value = t;
         }
     }

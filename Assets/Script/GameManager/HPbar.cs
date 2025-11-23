@@ -4,24 +4,41 @@ using UnityEngine.UI;
 public class HPbar : MonoBehaviour
 {
     [SerializeField] private Slider sliderHP;
-    [SerializeField] private Character target;
-    [SerializeField] private Character _characterTarget;
+    private Character targetCharacter; // ใช้ตัวแปรเดียว
 
-    void Start()
+    void Awake()
     {
-        if (target == null)
+        FindTarget();
+    }
+
+    private void FindTarget()
+    {
+        targetCharacter = GetComponentInParent<Character>();
+
+        if (targetCharacter == null && Player.Instance != null)
         {
-            target = GetComponent<Character>();
-            if (target == null)
-                target = GetComponentInParent<Character>();
+            if (GetComponentInParent<Player>() == Player.Instance)
+            {
+                targetCharacter = Player.Instance;
+            }
+        }
+
+        if (targetCharacter == null)
+        {
+            
         }
     }
 
     void Update()
     {
-        if (_characterTarget != null && sliderHP != null)
+        if (targetCharacter == null)
         {
-            float t = _characterTarget.CalculateHealth();
+            FindTarget();
+        }
+
+        if (targetCharacter != null && sliderHP != null)
+        {
+            float t = targetCharacter.CalculateHealth();
             sliderHP.value = t;
         }
     }

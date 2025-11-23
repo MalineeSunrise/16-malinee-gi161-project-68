@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : Character, IShootable
 {
@@ -18,6 +19,8 @@ public class Player : Character, IShootable
     private float healthTimer = 0f;
 
     public int JissawChard { get { return jissawChard; } set { jissawChard = value; } }
+
+    public static Player Instance { get; private set; }
 
     public void AddChard(int value)
     {
@@ -74,8 +77,7 @@ public class Player : Character, IShootable
 
     public void OnHitWith(Enemy enemy)
     {
-        LoseSanity(enemy.SanityHit);
-        TakeDamage(enemy.DamageHit);
+        TakeDamage(enemy.DamageHit, enemy.SanityHit);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -119,6 +121,43 @@ public class Player : Character, IShootable
         }
     }
 
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        GameObject spawnPointGO = GameObject.FindWithTag("SpawnPoint");
+
+        if (spawnPointGO != null)
+        {
+            this.transform.position = spawnPointGO.transform.position;
+        }
+        else
+        {
+            Debug.LogWarning("SpawnPoint not found in scene: " + scene.name + ". Player will use the last position.");
+        }
+    }
+
     void Start()
     {
         IntializePlayer();
@@ -129,5 +168,10 @@ public class Player : Character, IShootable
     void Update()
     {
         Shoot();
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            TakeDamage(50, 50);
+        }
     }
 }

@@ -46,8 +46,9 @@ public class Whispy : Enemy
     void Start()
     {
         IntializeWhispy();
-        SanityHit = 5;
-        DamageHit = 5;
+
+        SanityHit = 10;
+        DamageHit = 10;
 
         velocity = new Vector2(-4.0f, 0.0f);
     }
