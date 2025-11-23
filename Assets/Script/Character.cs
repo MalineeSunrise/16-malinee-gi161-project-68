@@ -78,7 +78,14 @@ public abstract class Character : MonoBehaviour
         return Sanity /maxSanity;
     }
 
-    public abstract bool Checksanity();
+    public virtual bool Checksanity()
+    {
+        if (Sanity <= 0)
+        {
+            return true;
+        }
+        return false;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -91,4 +98,6 @@ public abstract class Character : MonoBehaviour
     {
         
     }
+
+    
 }

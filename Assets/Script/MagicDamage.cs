@@ -23,7 +23,7 @@ public class MagicDamage : Weapon
     void Start()
     {
         speed = 4.0f * GetShootDirection();
-        damage = 10;
+        damage = 20;
     }
 
     // Update is called once per frame

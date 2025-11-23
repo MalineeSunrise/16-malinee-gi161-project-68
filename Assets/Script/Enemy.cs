@@ -12,20 +12,21 @@ public abstract class Enemy : Character
     public class LootItem
     {
         public GameObject itemPrefabs;
+        
         [Range(0, 100)] public float dropChance;
     }
 
-    [Header("Guaranteed Drop (Always drop)")]
-    public List<GameObject> guaranteedLoot = new List<GameObject>();
+    [Header("Enemy Loot Configuration")]
+    [SerializeField]
+    protected List<GameObject> guaranteedLoot = new List<GameObject>();
 
-    [Header("Random Drop (Percentage Chance)")]
-    public List<LootItem> lootTable = new List<LootItem>();
+    [SerializeField]
+    protected List<LootItem> lootTable = new List<LootItem>(); 
 
     private bool hasDroppedLoot = false;
 
     public void DropLoot()
     {
-        // 1) Guaranteed loot
         foreach (GameObject loot in guaranteedLoot)
         {
             if (loot != null)

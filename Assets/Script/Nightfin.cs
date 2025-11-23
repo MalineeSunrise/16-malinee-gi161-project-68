@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Nightfin : Enemy
 {
+
     public override void Behavior()
     {
         throw new System.NotImplementedException();
@@ -21,6 +22,11 @@ public class Nightfin : Enemy
     void Start()
     {
         IntializeNightfin();
+
+        guaranteedLoot.Clear();
+        lootTable.Clear();
+
+        
     }
 
     // Update is called once per frame

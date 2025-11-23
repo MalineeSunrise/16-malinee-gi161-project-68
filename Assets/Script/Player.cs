@@ -1,25 +1,28 @@
+using System;
 using UnityEngine;
 
 public class Player : Character, IShootable
 {
     [field: SerializeField] public GameObject Bullet { get; set; }
-
     [field: SerializeField] public Transform ShootPoint { get; set; }
-
     [field: SerializeField] public GameObject Bullet2 { get; set; }
-
     [field: SerializeField] public Transform ShootPoint2 { get; set; }
 
     public float ReloadTime { get; set; }
-
     public float WaitTime { get; set; }
 
     [SerializeField] private int jissawChard = 0;
+    public static Action<int> OnChardCountChanged;
+
+    private bool isLosingHealth = false;
+    private float healthTimer = 0f;
+
     public int JissawChard { get { return jissawChard; } set { jissawChard = value; } }
 
     public void AddChard(int value)
     {
         JissawChard += value;
+        OnChardCountChanged?.Invoke(JissawChard);
     }
 
     public void Heal(int value)
@@ -34,7 +37,34 @@ public class Player : Character, IShootable
 
     public override bool Checksanity()
     {
-        throw new System.NotImplementedException();
+        if (Sanity <= 0)
+        {
+            if (!isLosingHealth)
+            {
+                isLosingHealth = true;
+                healthTimer = 0f;
+            }
+
+            healthTimer += Time.fixedDeltaTime;
+            if (healthTimer >= 5f)
+            {
+                Health -= 10;
+                healthTimer = 0f;
+
+                if (Health <= 0)
+                {
+                    Health = 0;
+                }
+            }
+
+            return true;
+        }
+        else
+        {
+            isLosingHealth = false;
+            healthTimer = 0f;
+            return false;
+        }
     }
 
     public void IntializePlayer()
@@ -56,16 +86,14 @@ public class Player : Character, IShootable
             OnHitWith(enemy);
 
             Vector2 pushDirection = (transform.position - enemy.transform.position).normalized;
-
             rb.AddForce(pushDirection * 30f, ForceMode2D.Impulse);
-
-
         }
     }
 
     public void FixedUpdate()
     {
         WaitTime += Time.fixedDeltaTime;
+        Checksanity();
     }
 
     public void Shoot()
@@ -91,16 +119,13 @@ public class Player : Character, IShootable
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         IntializePlayer();
-
         ReloadTime = 1.0f;
-        WaitTime = 0.0f; 
+        WaitTime = 0.0f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Shoot();

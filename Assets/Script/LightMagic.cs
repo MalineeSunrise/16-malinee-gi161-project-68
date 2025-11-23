@@ -23,7 +23,7 @@ public class LightMagic : Weapon
     void Start()
     {
         speed = 4.0f * GetShootDirection();
-        sanity = 10;
+        sanity = 20;
     }
 
     // Update is called once per frame

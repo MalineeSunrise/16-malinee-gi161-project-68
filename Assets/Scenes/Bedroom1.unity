@@ -4164,7 +4164,7 @@ GameObject:
   - component: {fileID: 1442260270}
   - component: {fileID: 1442260269}
   - component: {fileID: 1442260271}
-  - component: {fileID: 1442260272}
+  - component: {fileID: 1442260273}
   m_Layer: 0
   m_Name: Furniture_props_01
   m_TagString: Untagged
@@ -4288,7 +4288,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1442260272
+--- !u!114 &1442260273
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -21,6 +21,8 @@ public class Gloob : Enemy
     void Start()
     {
         IntializeGloob();
+
+        
     }
 
     // Update is called once per frame

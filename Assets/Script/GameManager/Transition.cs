@@ -1,4 +1,4 @@
-using UnityEngine;
+๏ปฟusing UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -54,14 +54,12 @@ public class Transition : MonoBehaviour
 
     private IEnumerator PlayFadeAndLoad()
     {
-        // เปิด UI Panel Fullscreen
         if (transitionUIGO != null)
             transitionUIGO.SetActive(true);
 
-        // รอเวลาที่ต้องการ (เหมือน Fade-Out)
-        yield return new WaitForSeconds(1.4f); // ปรับตามความยาว Fade ที่ต้องการ
+        yield return new WaitForSeconds(1.4f);
 
-        // โหลด Scene ใหม่ทันที
         SceneManager.LoadScene(nextSceneName);
     }
 }
+
