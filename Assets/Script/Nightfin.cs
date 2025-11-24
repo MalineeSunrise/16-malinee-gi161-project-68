@@ -33,7 +33,7 @@ public class Nightfin : Enemy, IShootable
 
     public void IntializeNightfin()
     {
-        base.Intialize(50, 50);
+        base.Intialize(80, 80);
     }
 
     public void Shoot()

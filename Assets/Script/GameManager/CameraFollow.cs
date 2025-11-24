@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -7,11 +6,6 @@ public class CameraFollow : MonoBehaviour
     public float yOffset = 1f;
 
     private Transform targetPlayerTransform;
-
-    internal void SetTarget(Transform transform)
-    {
-        throw new NotImplementedException();
-    }
 
     void Awake()
     {
@@ -30,18 +24,23 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
+    public void StopFollow()
+    {
+        targetPlayerTransform = null;
+    }
+
     void LateUpdate()
     {
         if (targetPlayerTransform == null)
         {
-            FindPlayerTarget();
-            if (targetPlayerTransform == null)
-            {
-                return;
-            }
+            return;
         }
 
-        Vector3 newPos = new Vector3(targetPlayerTransform.position.x, targetPlayerTransform.position.y + yOffset, transform.position.z);
+        Vector3 newPos = new Vector3(
+            targetPlayerTransform.position.x,
+            targetPlayerTransform.position.y + yOffset,
+            transform.position.z
+        );
 
         transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
     }

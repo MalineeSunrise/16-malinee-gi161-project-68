@@ -6737,8 +6737,17 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8735230511327041415, guid: d11e8da7510ecc14487825368207ab3e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735230511327041415, guid: d11e8da7510ecc14487825368207ab3e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.07
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8735230511186208403, guid: d11e8da7510ecc14487825368207ab3e, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7904384680237227252, guid: d11e8da7510ecc14487825368207ab3e, type: 3}
       insertIndex: -1

@@ -129,6 +129,55 @@ public class Player : Character, IShootable
         }
     }
 
+    [Obsolete]
+    public override bool IsDead()
+    {
+        if (Health <= 0)
+        {
+            Health = 0;
+
+            var cam = FindObjectOfType<CameraFollow>();
+            if (cam != null)
+            {
+                cam.StopFollow();
+            }
+
+            if (deadUIManager != null)
+            {
+                deadUIManager.ShowGameOver();
+                this.enabled = false;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                Destroy(Player.Instance.gameObject);
+                SceneManager.LoadScene("_MainMenu");
+            }
+
+            return true;
+        }
+        return false;
+    }
+
+    [Obsolete]
+    void Start()
+    {
+        IntializePlayer();
+        ReloadTime = 1.0f;
+        WaitTime = 0.0f;
+
+        deadUIManager = FindObjectOfType<DeadUI>();
+        if (deadUIManager == null)
+        {
+            Debug.LogError("DeadUI Manager not found...");
+        }
+    }
+
+    void Update()
+    {
+        Shoot();
+    }
+
     private void Awake()
     {
         if (Instance == null)
@@ -165,7 +214,6 @@ public class Player : Character, IShootable
 
         this.transform.position = targetPosition;
 
-        Debug.Log("Warp Finalized to: " + targetPosition);
         isWarping = false;
 
         this.enabled = true;
@@ -179,58 +227,10 @@ public class Player : Character, IShootable
         {
             GameObject spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
 
-            Debug.Log("Found SpawnPoint? = " + (spawnPoint != null));
-
             if (spawnPoint != null)
             {
-                Debug.Log("SpawnPoint position = " + spawnPoint.transform.position);
                 StartCoroutine(SetPositionNextFrame(spawnPoint.transform.position));
             }
-            else
-            {
-                Debug.LogError("ERROR: NO SpawnPoint IN SCENE!");
-            }
         }
-    }
-
-    public override bool IsDead()
-    {
-        if (Health <= 0)
-        {
-            Health = 0;
-
-            if (deadUIManager != null)
-            {
-                deadUIManager.ShowGameOver();
-                this.enabled = false;
-            }
-            else
-            {
-                Time.timeScale = 1f;
-                Destroy(Player.Instance.gameObject);
-                SceneManager.LoadScene("_MainMenu");
-            }
-
-            return true;
-        }
-        return false;
-    }
-
-    void Start()
-    {
-        IntializePlayer();
-        ReloadTime = 1.0f;
-        WaitTime = 0.0f;
-
-        deadUIManager = FindObjectOfType<DeadUI>();
-        if (deadUIManager == null)
-        {
-            Debug.LogError("DeadUI Manager not found...");
-        }
-    }
-
-    void Update()
-    {
-        Shoot();
     }
 }

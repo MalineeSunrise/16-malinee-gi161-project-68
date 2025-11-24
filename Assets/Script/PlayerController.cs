@@ -63,11 +63,5 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         isGrounded = true;
-        isGrounded = true;
-    }
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        
     }
 }
