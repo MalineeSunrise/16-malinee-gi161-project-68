@@ -27,13 +27,16 @@ public class UIDL_manager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        dialoguePanel.SetActive(false);
+        if (dialoguePanel != null)
+            dialoguePanel.SetActive(false);
 
-        continueButton.onClick.AddListener(OnClickContinue);
+        if (continueButton != null)
+            continueButton.onClick.AddListener(OnClickContinue);
     }
 
     public void StartDialogue(string[] dialogueLines)
     {
+        if (dialoguePanel == null || dialogueText == null) return;
         if (dialoguePanel.activeInHierarchy) return;
 
         currentDialogue = dialogueLines;
@@ -46,12 +49,13 @@ public class UIDL_manager : MonoBehaviour
 
     public void OnClickContinue()
     {
-        if (!dialoguePanel.activeInHierarchy) return;
+        if (dialoguePanel == null || !dialoguePanel.activeInHierarchy) return;
 
         if (isTyping)
         {
             StopAllCoroutines();
-            dialogueText.text = currentDialogue[index];
+            if (dialogueText != null)
+                dialogueText.text = currentDialogue[index];
             isTyping = false;
         }
         else
@@ -62,6 +66,8 @@ public class UIDL_manager : MonoBehaviour
 
     private void NextLine()
     {
+        if (currentDialogue == null) return;
+
         if (index < currentDialogue.Length - 1)
         {
             index++;
@@ -69,14 +75,15 @@ public class UIDL_manager : MonoBehaviour
         }
         else
         {
-            RemoveText(); 
+            RemoveText();
         }
     }
 
     private void StartTyping()
     {
         StopAllCoroutines();
-        dialogueText.text = "";
+        if (dialogueText != null)
+            dialogueText.text = "";
         StartCoroutine(Typing());
     }
 
@@ -84,7 +91,7 @@ public class UIDL_manager : MonoBehaviour
     {
         isTyping = true;
 
-        if (currentDialogue != null && index < currentDialogue.Length)
+        if (currentDialogue != null && index < currentDialogue.Length && dialogueText != null)
         {
             foreach (char letter in currentDialogue[index].ToCharArray())
             {
@@ -99,13 +106,13 @@ public class UIDL_manager : MonoBehaviour
     public void RemoveText()
     {
         StopAllCoroutines();
-        dialogueText.text = "";
-        index = 0;
-        dialoguePanel.SetActive(false);
-    }
 
-    internal bool IsDialogueFinished()
-    {
-        throw new NotImplementedException();
+        if (dialogueText != null)
+            dialogueText.text = "";
+
+        index = 0;
+
+        if (dialoguePanel != null)
+            dialoguePanel.SetActive(false);
     }
 }
