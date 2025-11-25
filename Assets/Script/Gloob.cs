@@ -23,7 +23,7 @@ public class Gloob : Enemy
     void Start()
     {
         IntializeGloob();
-        SanityHit = 5;
+        SanityHit = 10;
 
         Behavior();
     }

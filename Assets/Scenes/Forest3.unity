@@ -5431,6 +5431,10 @@ PrefabInstance:
       propertyPath: MaxDistance
       value: 3.504178
       objectReference: {fileID: 0}
+    - target: {fileID: -8896171978539107110, guid: 0770af5825aa6be4ea4bd3a6292df145, type: 3}
+      propertyPath: MinDistance
+      value: 3.504178
+      objectReference: {fileID: 0}
     - target: {fileID: -303026149930568191, guid: 0770af5825aa6be4ea4bd3a6292df145, type: 3}
       propertyPath: m_Size.x
       value: 1.8
@@ -5894,14 +5898,14 @@ RectTransform:
   m_GameObject: {fileID: 1123637147}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.9761448, y: 3.9761448, z: 3.9761448}
+  m_LocalScale: {x: 1.9189669, y: 1.9189669, z: 1.9189669}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1624583181}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -535, y: -75}
+  m_AnchoredPosition: {x: -376, y: -30}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1123637149
@@ -7091,7 +7095,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8896171978539107110, guid: 0770af5825aa6be4ea4bd3a6292df145, type: 3}
       propertyPath: MinDistance
-      value: 2.3343472
+      value: 3.214416
       objectReference: {fileID: 0}
     - target: {fileID: -303026149930568191, guid: 0770af5825aa6be4ea4bd3a6292df145, type: 3}
       propertyPath: m_Size.x
@@ -7401,7 +7405,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 7e4160ec26ec352469c9224e8208c860, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8945,7 +8949,7 @@ RectTransform:
   m_GameObject: {fileID: 1624583177}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0006479506, y: 0.0006479506, z: 0.0006479506}
+  m_LocalScale: {x: 0.0032384028, y: 0.0032384028, z: 0.0032384028}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1123637148}
@@ -8954,7 +8958,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 48.662025, y: 0.341}
+  m_AnchoredPosition: {x: 49.03, y: 0.51}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1644938411
@@ -17627,6 +17631,14 @@ PrefabInstance:
       propertyPath: MaxDistance
       value: 3.3535032
       objectReference: {fileID: 0}
+    - target: {fileID: -8896171978539107110, guid: 0770af5825aa6be4ea4bd3a6292df145, type: 3}
+      propertyPath: MinDistance
+      value: 3.3535032
+      objectReference: {fileID: 0}
+    - target: {fileID: -4315354784737762818, guid: 0770af5825aa6be4ea4bd3a6292df145, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -303026149930568191, guid: 0770af5825aa6be4ea4bd3a6292df145, type: 3}
       propertyPath: m_Size.x
       value: 1.8
@@ -17649,11 +17661,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1300651968148723891, guid: 0770af5825aa6be4ea4bd3a6292df145, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.39
+      value: 17.29
       objectReference: {fileID: 0}
     - target: {fileID: 1300651968148723891, guid: 0770af5825aa6be4ea4bd3a6292df145, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.7
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 1300651968148723891, guid: 0770af5825aa6be4ea4bd3a6292df145, type: 3}
       propertyPath: m_LocalPosition.z

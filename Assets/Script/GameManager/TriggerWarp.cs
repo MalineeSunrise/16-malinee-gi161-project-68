@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -20,6 +20,7 @@ public class TriggerWarp : MonoBehaviour
 
     private bool playerIsClose = false;
     private bool isWarping = false;
+    private bool triggerUsed = false;
 
     void Start()
     {
@@ -30,22 +31,22 @@ public class TriggerWarp : MonoBehaviour
             promptUIGO.SetActive(false);
     }
 
-    [System.Obsolete]
     void Update()
     {
-        if (playerIsClose && Input.GetKeyDown(KeyCode.E) && !isWarping)
+        if (playerIsClose && Input.GetKeyDown(KeyCode.E) && !isWarping && !triggerUsed)
         {
             if (Player.Instance != null)
             {
                 if (Player.Instance.JissawChard >= requiredChards)
                 {
-                    if (cloudAnimator != null && fadeOutClip != null)
-                    {
-                        isWarping = true;
-                        Player.Instance.PrepareForWarp();
-                        StartCoroutine(PlayFadeAndLoad());
-                        Destroy(this.gameObject);
-                    }
+                    isWarping = true;
+                    triggerUsed = true;
+
+                    // ปิด Trigger เพื่อไม่ให้กดซ้ำ
+                    DisableTrigger();
+
+                    // เรียก Coroutine เพื่อจัดลำดับ fade → destroy → warp
+                    StartCoroutine(FadeAnimateDestroyAndWarp());
                 }
                 else
                 {
@@ -55,7 +56,6 @@ public class TriggerWarp : MonoBehaviour
 
                     Player.Instance.enabled = false;
                 }
-
             }
         }
 
@@ -65,54 +65,51 @@ public class TriggerWarp : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {
             playerIsClose = true;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {
             playerIsClose = false;
-        }
     }
 
-    private IEnumerator PlayFadeAndLoad()
+    private IEnumerator FadeAnimateDestroyAndWarp()
     {
         if (transitionUIGO != null)
             transitionUIGO.SetActive(true);
 
-        if (cloudAnimator != null && fadeOutClip != null)
+        if (cloudAnimator != null)
         {
-            cloudAnimator.Play(fadeOutClip.name);
-            yield return new WaitForSeconds(fadeOutClip.length);
-        }
-        else
-        {
-            yield return new WaitForSeconds(1.4f);
+            cloudAnimator.Play(fadeOutClip.name, 0, 0f);
         }
 
-        if (Player.Instance != null)
+        yield return new WaitForSeconds(1.4f);
+
+        foreach (Transform child in Player.Instance.transform)
         {
-            Player.Instance.PrepareForWarp();
+            if (child.CompareTag("PlayerUI"))
+                child.gameObject.SetActive(false);
         }
+
+        Player.Instance.gameObject.SetActive(false);
+
+        Player.Instance.PrepareForWarp();
 
         SceneManager.LoadScene(nextSceneName);
     }
-
 
     private void HandlePromptDisplay()
     {
         if (promptUIGO == null || isWarping) return;
 
-        if (playerIsClose)
-        {
-            promptUIGO.SetActive(true);
-        }
-        else
-        {
-            promptUIGO.SetActive(false);
-        }
+        promptUIGO.SetActive(playerIsClose);
+    }
+
+    private void DisableTrigger()
+    {
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = false;
     }
 }
