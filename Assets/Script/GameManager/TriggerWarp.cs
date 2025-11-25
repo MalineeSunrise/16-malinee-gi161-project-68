@@ -44,6 +44,7 @@ public class TriggerWarp : MonoBehaviour
                         isWarping = true;
                         Player.Instance.PrepareForWarp();
                         StartCoroutine(PlayFadeAndLoad());
+                        Destroy(this.gameObject);
                     }
                 }
                 else
@@ -53,9 +54,6 @@ public class TriggerWarp : MonoBehaviour
                         deadUIManager.ShowGameOver();
 
                     Player.Instance.enabled = false;
-
-                    var cam = FindObjectOfType<CameraFollow>();
-                    cam?.StopFollow();
                 }
 
             }

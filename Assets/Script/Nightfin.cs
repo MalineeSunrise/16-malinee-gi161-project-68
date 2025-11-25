@@ -26,11 +26,6 @@ public class Nightfin : Enemy, IShootable
 
     }
 
-    public override bool Checksanity()
-    {
-        throw new System.NotImplementedException();
-    }
-
     public void IntializeNightfin()
     {
         base.Intialize(80, 80);

@@ -97,11 +97,6 @@ public class Gloob : Enemy
         canJump = true;
     }
 
-    public override bool Checksanity()
-    {
-        throw new System.NotImplementedException();
-    }
-
     void Update()
     {
         Behavior();

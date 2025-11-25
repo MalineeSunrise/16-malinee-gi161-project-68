@@ -24,11 +24,6 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    public void StopFollow()
-    {
-        targetPlayerTransform = null;
-    }
-
     void LateUpdate()
     {
         if (targetPlayerTransform == null)

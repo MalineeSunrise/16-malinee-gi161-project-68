@@ -4,7 +4,7 @@ public abstract class Character : MonoBehaviour
 {
     public float CurrentHealth { get; private set;}
 
-    [SerializeField] private float MaxHp = 100f;
+    [SerializeField] public float MaxHp = 100f;
 
     private float sanity;
     public float Sanity
@@ -35,7 +35,7 @@ public abstract class Character : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         Health -= damage;
 
@@ -48,6 +48,8 @@ public abstract class Character : MonoBehaviour
     {
         Health -= damage;
         Sanity -= sanity;
+
+        CurrentHealth = Health;
 
         IsDead();
     }

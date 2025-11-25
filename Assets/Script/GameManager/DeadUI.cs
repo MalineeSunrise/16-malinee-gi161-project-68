@@ -3,56 +3,69 @@ using UnityEngine.SceneManagement;
 
 public class DeadUI : MonoBehaviour
 {
+    public static DeadUI Instance { get; private set; }
     public GameObject DeadMenu;
 
-    public bool isDead;
+    private Player player;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
     void Start()
     {
-        if (DeadMenu != null && DeadMenu.transform.parent != null)
-        {
-            DeadMenu.transform.parent.gameObject.SetActive(true);
-        }
+        if (DeadMenu != null)
+            DeadMenu.SetActive(false);
 
-        DeadMenu.SetActive(false);
+        player = Player.Instance;
     }
 
-    private void DestroyPlayerInstance()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (Player.Instance != null)
-        {
-            Destroy(Player.Instance.gameObject);
-        }
-    }
+        player = Player.Instance;
 
-    private void DelayedDestroyPlayer()
-    {
-        if (Player.Instance != null)
-        {
-            Destroy(Player.Instance.gameObject);
-        }
+        if (DeadMenu != null)
+            DeadMenu.SetActive(false);
     }
 
     public void ShowGameOver()
     {
-        DeadMenu.SetActive(true);
+        if (DeadMenu != null)
+            DeadMenu.SetActive(true);
 
         Time.timeScale = 0f;
 
-        Invoke("DelayedDestroyPlayer", 0.01f);
+        if (player != null)
+            player.enabled = false;
     }
 
     public void PlayAgain()
     {
-        Time.timeScale = 1f; 
-
+        Time.timeScale = 1f;
+        player?.ResetPlayer();
         SceneManager.LoadScene("Bedroom1");
     }
 
     public void BackToMenu()
     {
         Time.timeScale = 1f;
-
         SceneManager.LoadScene("_MainMenu");
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

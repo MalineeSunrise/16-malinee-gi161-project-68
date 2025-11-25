@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -129,31 +130,19 @@ public class Player : Character, IShootable
         }
     }
 
-    [Obsolete]
     public override bool IsDead()
     {
         if (Health <= 0)
         {
             Health = 0;
-
-            var cam = FindObjectOfType<CameraFollow>();
-            if (cam != null)
-            {
-                cam.StopFollow();
-            }
+            Destroy(gameObject);
 
             if (deadUIManager != null)
             {
+                Destroy(gameObject);
                 deadUIManager.ShowGameOver();
                 this.enabled = false;
             }
-            else
-            {
-                Time.timeScale = 1f;
-                Destroy(Player.Instance.gameObject);
-                SceneManager.LoadScene("_MainMenu");
-            }
-
             return true;
         }
         return false;
@@ -232,5 +221,16 @@ public class Player : Character, IShootable
                 StartCoroutine(SetPositionNextFrame(spawnPoint.transform.position));
             }
         }
+    }
+
+    public void ResetPlayer()
+    {
+        Health = MaxHp;
+        Sanity = maxSanity;
+        this.enabled = true;
+
+        GameObject spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
+        if (spawnPoint != null)
+            transform.position = spawnPoint.transform.position;
     }
 }

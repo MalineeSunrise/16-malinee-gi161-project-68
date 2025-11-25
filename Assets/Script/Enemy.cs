@@ -44,6 +44,18 @@ public abstract class Enemy : Character
         }
     }
 
+    public override void TakeDamage(int damage)
+    {
+        if (Checksanity() == true)
+        {
+            base.TakeDamage(damage);
+        }
+        else
+        {
+            return;
+        }
+    }
+
     void OnDestroy()
     {
         if (IsDead() && hasDroppedLoot == false)
