@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -54,7 +55,7 @@ public class DeadUI : MonoBehaviour
     public void PlayAgain()
     {
         Time.timeScale = 1f;
-        player?.ResetPlayer();
+        StartCoroutine(ResetAfterSceneLoad());
         SceneManager.LoadScene("Bedroom1");
     }
 
@@ -67,5 +68,15 @@ public class DeadUI : MonoBehaviour
     void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private IEnumerator ResetAfterSceneLoad()
+    {
+        yield return new WaitUntil(() => Player.Instance != null);
+
+        player = Player.Instance;
+
+        if (player != null)
+            player.ResetPlayer();
     }
 }

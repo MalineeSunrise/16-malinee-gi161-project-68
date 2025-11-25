@@ -79,22 +79,27 @@ public class TriggerWarp : MonoBehaviour
         if (transitionUIGO != null)
             transitionUIGO.SetActive(true);
 
-        if (cloudAnimator != null)
+        if (cloudAnimator != null && fadeOutClip != null)
         {
             cloudAnimator.Play(fadeOutClip.name, 0, 0f);
         }
 
         yield return new WaitForSeconds(1.4f);
 
-        foreach (Transform child in Player.Instance.transform)
+        if (Player.Instance != null)
         {
-            if (child.CompareTag("PlayerUI"))
-                child.gameObject.SetActive(false);
+            // ปิด UI ของ Player ถ้ามี
+            foreach (Transform child in Player.Instance.transform)
+            {
+                if (child.CompareTag("Player")) // แก้เป็น Player
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
+
+            Player.Instance.gameObject.SetActive(false);
+            Player.Instance.PrepareForWarp();
         }
-
-        Player.Instance.gameObject.SetActive(false);
-
-        Player.Instance.PrepareForWarp();
 
         SceneManager.LoadScene(nextSceneName);
     }

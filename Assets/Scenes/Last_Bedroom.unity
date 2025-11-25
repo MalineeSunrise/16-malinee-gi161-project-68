@@ -988,6 +988,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Resume
       objectReference: {fileID: 0}
+    - target: {fileID: 2794643957251257834, guid: 40e5e7b5eb629734995fbe5473964183, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1609557464}
     - target: {fileID: 4650158175975588360, guid: 40e5e7b5eb629734995fbe5473964183, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1107,7 +1111,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2794643957251257834, guid: 40e5e7b5eb629734995fbe5473964183, type: 3}
   m_PrefabInstance: {fileID: 256873270}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1609557464}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2a181fa7c13dee419042c47537f45cd, type: 3}
@@ -5151,6 +5155,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1609557464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 99547790187785733, guid: 40e5e7b5eb629734995fbe5473964183, type: 3}
+  m_PrefabInstance: {fileID: 256873270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1631778357
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,39 +3,48 @@ using UnityEngine.SceneManagement;
 
 public class PauseGame : MonoBehaviour
 {
+    [Header("UI Panels")]
     public GameObject pauseMenu;
 
+    [Header("State")]
     public bool isPause;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        pauseMenu.SetActive(false);
+        // ป้องกัน null
+        if (pauseMenu != null)
+            pauseMenu.SetActive(false);
+        else
+            Debug.LogWarning("PauseMenu is not assigned in PauseGame script!");
 
         Time.timeScale = 1f;
         isPause = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("Escape Key Pressed!");
+
             if (isPause)
             {
                 ResumeGame();
             }
             else
             {
-                pauseGame();
+                PauseGameAction();
             }
         }
     }
 
-    public void pauseGame()
+    public void PauseGameAction()
     {
-        pauseMenu.SetActive(true);
+        if (pauseMenu != null)
+            pauseMenu.SetActive(true);
+        else
+            Debug.LogWarning("PauseMenu is not assigned! Cannot open pause menu.");
+
         Time.timeScale = 0f;
         isPause = true;
     }
@@ -44,7 +53,11 @@ public class PauseGame : MonoBehaviour
     {
         Debug.Log("--- ResumeGame is Executed ---");
 
-        pauseMenu.SetActive(false);
+        if (pauseMenu != null)
+            pauseMenu.SetActive(false);
+        else
+            Debug.LogWarning("PauseMenu is not assigned! Cannot close pause menu.");
+
         Time.timeScale = 1f;
         isPause = false;
     }
@@ -54,7 +67,8 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("_MainMenu");
 
-        Destroy(Player.Instance.gameObject);
+        if (Player.Instance != null)
+            Destroy(Player.Instance.gameObject);
     }
 
     public void QuitGame()
