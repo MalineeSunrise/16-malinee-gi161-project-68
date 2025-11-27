@@ -52,7 +52,7 @@ public abstract class DiaLogue : MonoBehaviour
 
     protected abstract string[] GetDialogue();
 
-    //https://www.youtube.com/watch?v=1nFNOyCalzo
+    // Reference https://www.youtube.com/watch?v=1nFNOyCalzo
 }
 
 

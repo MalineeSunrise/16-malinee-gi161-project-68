@@ -42,6 +42,7 @@ public abstract class Enemy : Character
                 Instantiate(item.itemPrefabs, transform.position, Quaternion.identity);
             }
         }
+        // Reference https://youtu.be/Xe73unMxNiY?si=dMs3mDAV5rC9rXsl
     }
 
     public override void TakeDamage(int damage)

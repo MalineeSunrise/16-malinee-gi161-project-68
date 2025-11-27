@@ -79,4 +79,6 @@ public class PauseGame : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
+
+    // Reference https://www.youtube.com/watch?v=9dYDBomQpBQ
 }

@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Art_Controller
 {
@@ -167,77 +164,6 @@ namespace Art_Controller
         }
 
         //After Action Button is Clicked
-        public void ActionChange()
-        {
-            if (currentCharacter == null) return;
-            var animatorController = characterAnimator.runtimeAnimatorController as AnimatorController;
-            var states = animatorController.layers.SelectMany(layer => layer.stateMachine.states);
-            if (state == State.Idle)
-            {
-                characterAnimator.Play("walk");
-                state = State.Walk;
-            }
-            else if (state == State.Walk && states.Any(x=>x.state.name == "attack"))
-            {
-                //Attack Animation
-                characterAnimator.Play("attack");
-                state = State.Attack;
-                //Attack Sfx
-                StartCoroutine(ActionSFX());
-                //Attack Prefab
-                if (characterInfo[currentIndex].actions.Count > 0 && characterInfo[currentIndex].actions.Any(x => x.type == ActionType.Attack))
-                {
-                    List<ActionInfo> actions = characterInfo[currentIndex].actions.Where(x => x.type == ActionType.Attack).ToList();
-                    //Spawn All listed Prefab, remember for the delay for each spawned prefab
-                    for (int i = 0; i < actions.Count; i++)
-                    {
-                        StartCoroutine(SpawnSkill(actions[i]));
-                    }
-                }   
-            }
-            else if (state == State.Attack && states.Any(x => x.state.name == "skill"))
-            {
-                //Skill Animation
-                characterAnimator.Play("skill");
-                state = State.Skill;
-                //Skill Sfx
-                StartCoroutine(ActionSFX());
-                //Skill Prefab
-                if (characterInfo[currentIndex].actions.Count > 0 && characterInfo[currentIndex].actions.Any(x => x.type == ActionType.Skill))
-                {
-                    List<ActionInfo> actions = characterInfo[currentIndex].actions.Where(x => x.type == ActionType.Skill).ToList();
-                    //Spawn All listed Prefab, remember for the delay for each spawned prefab
-                    for (int i = 0; i < actions.Count; i++)
-                    {
-                        StartCoroutine(SpawnSkill(actions[i]));
-                    }
-                }
-            }
-            else if (state == State.Skill && states.Any(x => x.state.name == "secondSkill"))
-            {
-                //SecondSkill Animation
-                characterAnimator.Play("secondSkill");
-                state = State.SecondSkill;
-                //SecondSkill Sfx
-                StartCoroutine(ActionSFX());
-                //Second Skill Prefab
-                if (characterInfo[currentIndex].actions.Count > 0 && characterInfo[currentIndex].actions.Any(x => x.type == ActionType.SecondSkill))
-                {
-                    List<ActionInfo> actions = characterInfo[currentIndex].actions.Where(x => x.type == ActionType.SecondSkill).ToList();
-                    //Spawn All listed Prefab, remember for the delay for each spawned prefab
-                    for (int i = 0; i < actions.Count; i++)
-                    {
-                        StartCoroutine(SpawnSkill(actions[i]));
-                    }
-                }
-            }
-            else 
-            {
-                characterAnimator.Play("die");
-                state = State.Die;
-                StartCoroutine(Fade(false));
-            }
-        }
 
         private void Update()
         {

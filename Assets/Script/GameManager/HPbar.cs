@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class HPbar : MonoBehaviour
 {
     [SerializeField] private Slider sliderHP;
-    private Character targetCharacter; // ใช้ตัวแปรเดียว
+    private Character targetCharacter;
 
     void Awake()
     {
@@ -42,4 +42,6 @@ public class HPbar : MonoBehaviour
             sliderHP.value = t;
         }
     }
+
+    // Reference https://youtu.be/__jkoSmVSMM?si=ZCH9beCw31o9KdsD
 }

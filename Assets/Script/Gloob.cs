@@ -67,6 +67,8 @@ public class Gloob : Enemy
                 speed * Time.deltaTime
             );
         }
+
+        //Reference https://www.youtube.com/watch?v=2SXa10ILJms
     }
 
     [System.Obsolete]

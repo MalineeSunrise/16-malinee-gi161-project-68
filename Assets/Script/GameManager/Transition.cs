@@ -26,7 +26,6 @@ public class Transition : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
         {
-            // เปิดใช้งาน Player กลับมา (ถ้ามันถูกปิดอยู่จากการตาย)
             if (Player.Instance != null)
             {
                 Player.Instance.enabled = true;
@@ -64,10 +63,11 @@ public class Transition : MonoBehaviour
 
         if (Player.Instance != null)
         {
-            // เรียกเมธอดใหม่แบบไม่มีพารามิเตอร์
             Player.Instance.PrepareForWarp();
         }
 
         SceneManager.LoadScene(nextSceneName);
     }
+
+    // Reference https://youtu.be/-7I0slJyi8g?si=etG2RxPMmTSeZFbS
 }

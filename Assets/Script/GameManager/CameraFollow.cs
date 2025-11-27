@@ -39,4 +39,6 @@ public class CameraFollow : MonoBehaviour
 
         transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
     }
+
+    // Reference https://www.youtube.com/watch?v=FXqwunFQuao
 }
