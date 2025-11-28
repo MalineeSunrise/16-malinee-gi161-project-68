@@ -6,7 +6,7 @@ public abstract class Enemy : Character
     public int SanityHit { get; protected set; }
     public int DamageHit { get; protected set; }
 
-    public abstract void Behavior();
+    
 
     [System.Serializable]
     public class LootItem
@@ -24,6 +24,9 @@ public abstract class Enemy : Character
     protected List<LootItem> lootTable = new List<LootItem>(); 
 
     private bool hasDroppedLoot = false;
+
+
+    public abstract void Behavior();
 
     public void DropLoot()
     {
