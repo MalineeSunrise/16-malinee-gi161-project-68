@@ -16,7 +16,7 @@ public class LightMagic : Weapon
     {
         if (character is Enemy) 
         {
-            character.LoseSanity(this.sanity);
+            character.TakeDamage(damage, sanity);
             Destroy(gameObject);
         }
 

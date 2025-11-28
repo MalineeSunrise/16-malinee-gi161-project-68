@@ -59,7 +59,7 @@ public class Player : Character, IShootable
             healthTimer += Time.fixedDeltaTime;
             if (healthTimer >= 5f)
             {
-                Health -= 10;
+                Instance.TakeDamage(10);
                 healthTimer = 0f;
 
                 if (Health <= 0)

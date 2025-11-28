@@ -54,11 +54,6 @@ public abstract class Character : MonoBehaviour
         IsDead();
     }
 
-    public void LoseSanity(int amount)
-    {
-        Sanity -= amount;
-    }
-
     public virtual bool IsDead()
     {
         if (Health <= 0)
