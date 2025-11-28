@@ -13,7 +13,7 @@ public class Nightfin : Enemy, IShootable
     public float WaitTime { get; set; } = 0.0f;
 
 
-    [SerializeField] float attackRange = 10.0f;
+    [SerializeField] private float attackRange = 10.0f;
 
     public override void Behavior()
     {
